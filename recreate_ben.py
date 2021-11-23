@@ -11,12 +11,10 @@ Recreating Ben's Slides
 #directory = 'C:\\Users\\valer\\2019_apr_15_to_19.csv'
 #directory = st.text_input("Enter the directory of your file:", "")
 #directory = Path(dir).parents[1] / dir
-directory = st.text_input('Enter a file path:')
-try:
-    with open(directory) as input:
-        st.text(input.read())
-except FileNotFoundError:
-    st.error('File not found.')
+
+###############################################
+directory = st.file_uploader("Drag and drop a file", type=['csv', 'xlsx'])
+###############################################
 
 raw_df = pd.read_csv(directory, nrows=3)
 
