@@ -6,7 +6,9 @@ st.title("""
 Recreating Ben's Slides
 """)
 
-directory = st.text_input("Enter the directory of your file:", "")
+#directory = st.text_input("Enter the directory of your file:", "")
+#directory = st.file_uploader("Upload Dataset", type=["csv", "txt"])
+directory = "C:\\Users\\valer\\2019_apr_15_to_19.csv"
 raw_df = pd.read_csv(directory, nrows=3)
 
 var_names = list(raw_df.columns)
