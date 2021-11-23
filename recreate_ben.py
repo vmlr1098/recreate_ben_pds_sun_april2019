@@ -13,7 +13,7 @@ Recreating Ben's Slides
 #directory = Path(dir).parents[1] / dir
 directory = st.text_input('Enter a file path:')
 try:
-    with open(filename) as input:
+    with open(directory) as input:
         st.text(input.read())
 except FileNotFoundError:
     st.error('File not found.')
