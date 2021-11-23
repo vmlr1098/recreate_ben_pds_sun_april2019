@@ -2,14 +2,21 @@ import pandas as pd
 import plotly.express as px
 import streamlit as st
 from pathlib import Path
+import os
 
 st.title("""
 Recreating Ben's Slides
 """)
 
 #directory = 'C:\\Users\\valer\\2019_apr_15_to_19.csv'
-directory = st.text_input("Enter the directory of your file:", "")
+#directory = st.text_input("Enter the directory of your file:", "")
 #directory = Path(dir).parents[1] / dir
+directory = st.text_input('Enter a file path:')
+try:
+    with open(filename) as input:
+        st.text(input.read())
+except FileNotFoundError:
+    st.error('File not found.')
 
 raw_df = pd.read_csv(directory, nrows=3)
 
