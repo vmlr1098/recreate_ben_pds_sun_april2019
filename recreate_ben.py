@@ -13,10 +13,10 @@ Recreating Ben's Slides
 #directory = Path(dir).parents[1] / dir
 
 ###############################################
-directory = st.file_uploader("Drag and drop a file", type=['csv', 'xlsx'])
+directory = st.file_uploader("Drag and drop a file", type=['csv'])
 ###############################################
 
-raw_df = pd.read_csv(directory, header=None, nrows=3)
+raw_df = pd.read_csv(directory, nrows=3)
 
 var_names = list(raw_df.columns)
 st.sidebar.title("Make a Selection")
