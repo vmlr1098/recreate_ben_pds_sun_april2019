@@ -1,15 +1,19 @@
-import streamlit as st
 import pandas as pd
 import plotly.express as px
+import streamlit as st
+import os
 
 st.title("""
 Recreating Ben's Slides
 """)
 
-#directory = st.text_input("Enter the directory of your file:", "")
+directory = st.text_input("Enter the directory of your file:", "")
+if directory:
+    raw_df = pd.read_csv(directory, nrows=3)
+    raw_df
 #directory = st.file_uploader("Upload Dataset", type=["csv", "txt"])
-directory = "C:\\Users\\valer\\2019_apr_15_to_19.csv"
-raw_df = pd.read_csv(directory, nrows=3)
+#directory = "C:\\Users\\valer\\2019_apr_15_to_19.csv"
+#raw_df = pd.read_csv(directory, nrows=3)
 
 var_names = list(raw_df.columns)
 st.sidebar.title("Make a Selection")
