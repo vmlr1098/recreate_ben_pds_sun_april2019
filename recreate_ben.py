@@ -27,8 +27,9 @@ y_axis2 = st.sidebar.selectbox("Select Y-Variable 2 (Red)", var_names)
 
 #yyyy_min = (pd.read_csv(directory, usecols=[yyyy])).min()
 #yyyy_max = (pd.read_csv(directory, usecols=[yyyy])).max()
-yyyy_min = ((pd.read_csv(directory)).columns == "yyyy").min()
-yyyy_max = ((pd.read_csv(directory)).columns == "yyyy").max()
+data = pd.read_csv(directory)
+yyyy_min = data['yyyy'].min()
+yyyy_max = data['yyyy'].max()
 y = list(range(yyyy_min[yyyy], yyyy_max[yyyy] + 1))
 
 mm_min = (pd.read_csv(directory, usecols=["mm"])).min()
