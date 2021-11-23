@@ -1,19 +1,17 @@
 import pandas as pd
 import plotly.express as px
 import streamlit as st
-import os
+from pathlib import Path
 
 st.title("""
 Recreating Ben's Slides
 """)
 
-directory = st.text_input("Enter the directory of your file:", "")
-if directory:
-    raw_df = pd.read_csv(directory, nrows=3)
-    raw_df
-#directory = st.file_uploader("Upload Dataset", type=["csv", "txt"])
-#directory = "C:\\Users\\valer\\2019_apr_15_to_19.csv"
-#raw_df = pd.read_csv(directory, nrows=3)
+#directory = 'C:\\Users\\valer\\2019_apr_15_to_19.csv'
+dir = st.text_input("Enter the directory of your file:", "")
+directory = Path(dir).parents[1] / dir
+
+raw_df = pd.read_csv(directory, nrows=3)
 
 var_names = list(raw_df.columns)
 st.sidebar.title("Make a Selection")
@@ -21,7 +19,6 @@ x_axis = st.sidebar.selectbox("Select X-Variable", var_names)
 y_axis1 = st.sidebar.selectbox("Select Y-Variable 1 (Blue)", var_names)
 y_axis2 = st.sidebar.selectbox("Select Y-Variable 2 (Red)", var_names)
 
-#directory = 'C:\\Users\\valer\\2019_apr_15_to_19.csv'
 
 yyyy_min = (pd.read_csv(directory, usecols=["yyyy"])).min()
 yyyy_max = (pd.read_csv(directory, usecols=["yyyy"])).max()
