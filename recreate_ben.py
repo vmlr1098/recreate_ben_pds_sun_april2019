@@ -8,8 +8,8 @@ Recreating Ben's Slides
 """)
 
 #directory = 'C:\\Users\\valer\\2019_apr_15_to_19.csv'
-dir = st.text_input("Enter the directory of your file:", "")
-directory = Path(dir).parents[1] / dir
+directory = st.text_input("Enter the directory of your file:", "")
+#directory = Path(dir).parents[1] / dir
 
 raw_df = pd.read_csv(directory, nrows=3)
 
