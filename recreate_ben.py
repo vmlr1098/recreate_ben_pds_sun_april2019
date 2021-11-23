@@ -16,7 +16,7 @@ Recreating Ben's Slides
 directory = st.file_uploader("Drag and drop a file", type=['csv', 'xlsx'])
 ###############################################
 
-raw_df = pd.read_csv(directory, nrows=3)
+raw_df = pd.read_csv(directory, header=[0], nrows=3)
 
 var_names = list(raw_df.columns)
 st.sidebar.title("Make a Selection")
