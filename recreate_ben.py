@@ -8,15 +8,11 @@ st.title("""
 Recreating Ben's Slides
 """)
 
-#directory = 'C:\\Users\\valer\\2019_apr_15_to_19.csv'
-#directory = st.text_input("Enter the directory of your file:", "")
-#directory = Path(dir).parents[1] / dir
+# directory = 'C:\\Users\\valer\\2019_apr_15_to_19.csv'
+directory = st.file_uploader("Drag and drop a file", type=['csv', 'xlsx'])
 
-###############################################
-directory = st.file_uploader("Drag and drop a file", type=['csv'])
-###############################################
-
-raw_df = pd.read_csv(directory, nrows=3)
+data = pd.read_csv(directory)
+raw_df = data[0:5]
 
 var_names = list(raw_df.columns)
 st.sidebar.title("Make a Selection")
@@ -24,34 +20,37 @@ x_axis = st.sidebar.selectbox("Select X-Variable", var_names)
 y_axis1 = st.sidebar.selectbox("Select Y-Variable 1 (Blue)", var_names)
 y_axis2 = st.sidebar.selectbox("Select Y-Variable 2 (Red)", var_names)
 
+################################################################################
 
-#yyyy_min = (pd.read_csv(directory, usecols=[yyyy])).min()
-#yyyy_max = (pd.read_csv(directory, usecols=[yyyy])).max()
-data = pd.read_csv(directory)
-yyyy_min = data["yyyy"][2].min()
-yyyy_max = data["yyyy"][2].max()
+yyyy_min = data['yyyy'].min()
+yyyy_max = data['yyyy'].max()
 y = list(range(yyyy_min, yyyy_max + 1))
 
-mm_min = (pd.read_csv(directory, usecols=["mm"])).min()
-mm_max = (pd.read_csv(directory, usecols=["mm"])).max()
-m = list(range(mm_min['mm'], mm_max['mm'] + 1))
+mm_min = data['mm'].min()
+mm_max = data['mm'].max()
+m = list(range(mm_min, mm_max + 1))
 
-dd_min = (pd.read_csv(directory, usecols=["dd"])).min()
-dd_max = (pd.read_csv(directory, usecols=["dd"])).max()
-d = list(range(dd_min['dd'], dd_max['dd'] + 1))
+dd_min = data['dd'].min()
+dd_max = data['dd'].max()
+d = list(range(dd_min, dd_max + 1))
 
-hh_min = (pd.read_csv(directory, usecols=["hh"])).min()
-hh_max = (pd.read_csv(directory, usecols=["hh"])).max()
-h = list(range(hh_min['hh'], hh_max['hh'] + 1))
+hh_min = data['hh'].min()
+hh_max = data['hh'].max()
+h = list(range(hh_min, hh_max + 1))
 
 year = st.sidebar.selectbox("Select Year", y)
 month = st.sidebar.selectbox("Select Month", m)
 day = st.sidebar.selectbox("Select Day", d)
 hour = st.sidebar.selectbox("Select Hour", h)
+#st.write(data.head())
 
-raw_df2 = (pd.read_csv(directory,
-                       usecols=["yyyy", "mm", "dd", "hh", x_axis, y_axis1, y_axis2],
-                       na_values=[-9999])).dropna()
+################################################################################
+
+# raw_df2 = (pd.read_csv(directory,
+#                        usecols=["yyyy", "mm", "dd", "hh", x_axis, y_axis1, y_axis2],
+#                        na_values=[-9999])).dropna()
+raw_df2 = data[['yyyy', 'mm', 'dd', 'hh', x_axis, y_axis1, y_axis2]]
+
 
 subset = raw_df2[
     (raw_df2['yyyy'] == year) &
@@ -59,6 +58,14 @@ subset = raw_df2[
     (raw_df2['dd'] == day) &
     (raw_df2['hh'] == hour)
     ]
+st.write(subset.head())
+
+# subset = data[
+#     (data['yyyy'] == year) &
+#     (data['mm'] == month) &
+#     (data['dd'] == day) &
+#     (data['hh'] == hour)
+#     ]
 
 if y_axis1 == 'last_az_cmd':
     subset['last_az_cmd'] = (1000 + (3564 * subset['last_az_cmd'] / 360))
