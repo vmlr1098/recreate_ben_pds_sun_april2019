@@ -16,9 +16,9 @@ raw_df = data[0:5]
 
 var_names = list(raw_df.columns)
 st.sidebar.title("Make a Selection")
-x_axis = st.sidebar.selectbox("Select X-Variable", var_names)
-y_axis1 = st.sidebar.selectbox("Select Y-Variable 1 (Blue)", var_names)
-y_axis2 = st.sidebar.selectbox("Select Y-Variable 2 (Red)", var_names)
+x_axis = st.sidebar.selectbox("Select X-Variable", var_names, index=5)
+y_axis1 = st.sidebar.selectbox("Select Y-Variable 1 (Blue)", var_names, index=6)
+y_axis2 = st.sidebar.selectbox("Select Y-Variable 2 (Red)", var_names, index=7)
 
 ################################################################################
 
@@ -52,7 +52,7 @@ hour = st.sidebar.selectbox("Select Hour", h)
 raw_df2 = data[['yyyy', 'mm', 'dd', 'hh', x_axis, y_axis1, y_axis2]]
 
 
-subset = raw_df2[
+subset = data[
     (raw_df2['yyyy'] == year) &
     (raw_df2['mm'] == month) &
     (raw_df2['dd'] == day) &
