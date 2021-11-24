@@ -17,8 +17,8 @@ raw_df = data[0:5]
 var_names = list(raw_df.columns)
 st.sidebar.title("Make a Selection")
 x_axis = st.sidebar.selectbox("Select X-Variable", var_names, index=5)
-y_axis1 = st.sidebar.selectbox("Select Y-Variable 1 (Blue)", var_names, index=1)
-y_axis2 = st.sidebar.selectbox("Select Y-Variable 2 (Red)", var_names, index=2)
+y_axis1 = st.sidebar.selectbox("Select Y-Variable 1 (Blue)", var_names, index=6)
+y_axis2 = st.sidebar.selectbox("Select Y-Variable 2 (Red)", var_names, index=7)
 
 ################################################################################
 
