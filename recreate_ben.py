@@ -11,7 +11,7 @@ Recreating Ben's Slides
 # directory = 'C:\\Users\\valer\\2019_apr_15_to_19.csv'
 directory = st.file_uploader("Drag and drop a file", type=['csv', 'xlsx'])
 
-data = pd.read_csv(directory)
+data = (pd.read_csv(directory, na_values=[-9999])).dropna()
 raw_df = data[0:5]
 
 var_names = list(raw_df.columns)
@@ -59,13 +59,6 @@ subset = raw_df2[
     (raw_df2['hh'] == hour)
     ]
 st.write(subset.head())
-
-# subset = data[
-#     (data['yyyy'] == year) &
-#     (data['mm'] == month) &
-#     (data['dd'] == day) &
-#     (data['hh'] == hour)
-#     ]
 
 if y_axis1 == 'last_az_cmd':
     subset['last_az_cmd'] = (1000 + (3564 * subset['last_az_cmd'] / 360))
