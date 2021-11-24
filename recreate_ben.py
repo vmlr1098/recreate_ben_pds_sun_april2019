@@ -58,7 +58,7 @@ subset = data[
     (raw_df2['dd'] == day) &
     (raw_df2['hh'] == hour)
     ]
-st.write(subset.head())
+#st.write(subset.head())
 
 if y_axis1 == 'last_az_cmd':
     subset['last_az_cmd'] = (1000 + (3564 * subset['last_az_cmd'] / 360))
