@@ -9,9 +9,20 @@ Recreating Ben's Slides
 """)
 
 # directory = 'C:\\Users\\valer\\2019_apr_15_to_19.csv'
-directory = st.file_uploader("Drag and drop a file", type=['csv', 'xlsx'])
+##directory = st.file_uploader("Drag and drop a file", type=['csv', 'xlsx'])
 
-data = (pd.read_csv(directory, na_values=[-9999])).dropna()
+###################################
+directory = st.file_uploader("Drag and drop a file", type=['csv', 'xlsx'])
+try:
+    data = (pd.read_csv(directory, na_values=[-9999])).dropna()
+except:
+    st.error("Please import proper csv file from your local computer")
+    st.stop()
+
+
+###################################
+
+#data = (pd.read_csv(directory, na_values=[-9999])).dropna()
 raw_df = data[0:5]
 
 var_names = list(raw_df.columns)
